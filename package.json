@@ -1,13 +1,13 @@
 {
-  "name": "react-multi-highlight",
+  "name": "react-multi-highlite",
   "type": "module",
-  "description": "React multi highlight component for text",
+  "description": "React multi highlite component for text",
   "version": "1.0.1",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/simonorzel26/react-multi-highlight"
+    "url": "git+https://github.com/simonorzel26/react-multi-highlite"
   },
-  "homepage": "https://github.com/simonorzel26/react-multi-highlight",
+  "homepage": "https://github.com/simonorzel26/react-multi-highlite",
   "files": [
     "dist/**/*"
   ],
@@ -27,7 +27,7 @@
     "typescript": "^5.5.3"
   },
   "bugs": {
-    "url": "https://github.com/simonorzel26/react-multi-highlight/issues"
+    "url": "https://github.com/simonorzel26/react-multi-highlite/issues"
   },
   "dependencies": {
     "react": "^18.3.1"
