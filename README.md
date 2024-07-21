@@ -1,121 +1,144 @@
 
-# TS NPM Package Boilerplate (2024)
+# react-multi-highlight
 
-This TypeScript NPM package boilerplate is designed to kickstart the development of TypeScript libraries for Node.js and the browser. It features a modern build setup with TypeScript, leveraging `tsup` for bundling and `@changesets/cli` for version management. The package exports a simple function as an example to demonstrate the setup.
-
-## Features
-
-- TypeScript for type safety.
-- Biome for linting and formatting.
-- Dual package output (CommonJS and ESM) for compatibility.
-- Type definitions for TypeScript projects.
-- Automated build and release scripts.
-
-## Prerequisites
-
-- Node.js v22.5.1 (ensure you have this version by using `.nvmrc`)
-- `pnpm` (Follow [pnpm installation guide](https://pnpm.io/installation) if you haven't installed it)
-- [Biome](https://biomejs.dev/) for linting and formatting
-
-## Reuse
-
-### Step 1: Clone the Boilerplate Repository
-
-First, clone the existing repository `simonorzel26/npm-package-boilerplate-2024` to your local machine. This step involves copying all the files from the original repository.
-
-```bash
-git clone https://github.com/simonorzel26/npm-package-boilerplate-2024.git <your-new-repository-name>
-cd <your-new-repository-name>
-```
-
-### Step 2: Remove the Existing Git History
-
-Since you're creating a new project, you'll likely want to start with a clean history:
-
-```bash
-rm -rf .git
-```
-
-This command removes the `.git` directory which contains all the git history of the original repository.
-
-### Step 3: Initialize a New Repository
-
-Now, initialize a new git repository:
-
-```bash
-git init
-git add .
-git commit -m "Initial commit based on npm-package-boilerplate-2024"
-```
-
-### Step 4: Create a New Repository on GitHub
-
-Go to GitHub and create a new repository named `<your-new-repository-name>`. Do not initialize it with a README, .gitignore, or license since you are importing an existing project.
-
-### Step 5: Push to GitHub
-
-Link your local repository to the GitHub repository and push the changes:
-
-```bash
-git remote add origin https://github.com/<your-username>/<your-new-repository-name>.git
-git branch -M main
-git push -u origin main
-```
-
-Replace `<your-username>` with your GitHub username.
+`react-multi-highlight` is a React component that allows you to highlight specific words or phrases within a block of text. This can be particularly useful for emphasizing important information, highlighting search terms, or making certain parts of the text stand out.
 
 ## Installation
 
-To use this boilerplate for your project, clone the repository and install the dependencies.
+You can install the library using npm:
 
 ```bash
-pnpm install
+npm install react-multi-highlight
 ```
 
 ## Usage
 
-After installation, you can start using the boilerplate to build your TypeScript library. Here's how to import and use the example function exported by this package:
+To use the `MultiHighlight` component, import it and pass the text you want to highlight along with an array of matcher objects. Each matcher object should contain the text to highlight and the class name to apply to the highlighted text.
 
-```typescript
-import { foo } from 'your-package-name';
+```jsx
+import React from 'react';
+import MultiHighlight from 'react-multi-highlight';
 
-console.log(foo('Hello, world!'));
-```
+const App = () => {
+  const text = "In software development, highlighting important pieces of information can greatly improve readability and comprehension. For instance, highlighting code snippets, errors, or important notes in documentation can make a significant difference.";
+  const matchers = [
+    { text: "highlighting", classname: "bg-red-200 text-black" },
+    { text: "important", classname: "bg-green-300 text-black" },
+    { text: "information", classname: "bg-gray-600 text-white" },
+  ];
 
-## Development
-
-This package includes several scripts to help with development:
-
-- `pnpm run build`: Compiles the TypeScript source code and generates both CommonJS and ESM modules along with type definitions.
-- `pnpm run lint`: Runs TypeScript compiler checks without emitting code to ensure type safety.
-- `pnpm run release`: Bundles the package and publishes it to NPM with version management.
-
-### Adding New Functions
-
-To add a new function, create a `.ts` file in the `src` directory. For example:
-
-```typescript
-// src/newFunction.ts
-export const newFunction = (): void => {
-  // Implementation here
+  return (
+    <div>
+      <MultiHighlight matchers={matchers}>{text}</MultiHighlight>
+    </div>
+  );
 };
+
+export default App;
 ```
 
-Then, export it from `index.ts`:
+## Props
 
-```typescript
-// src/index.ts
-export * from './newFunction';
+### MultiHighlight
+
+The `MultiHighlight` component accepts the following props:
+
+- **children**: The text to search for matches (required).
+- **matchers**: Array of matcher objects containing `text` and `classname` (required).
+  - `text`: The text to match and highlight.
+  - `classname`: The class name to apply to the highlighted text.
+- **caseSensitive**: (optional) Whether the matching should be case-sensitive. Defaults to `false`.
+- **wrapperElement**: (optional) Custom wrapper element for the highlighted text. This should be a function that returns a React element.
+
+## Examples
+
+### Basic Usage
+
+```jsx
+import React from 'react';
+import MultiHighlight from 'react-multi-highlight';
+
+const text = "In software development, highlighting important pieces of information can greatly improve readability and comprehension.";
+const matchers = [
+  { text: "highlighting", classname: "bg-red-200 text-black" },
+  { text: "important", classname: "bg-green-300 text-black" },
+  { text: "information", classname: "bg-gray-600 text-white" },
+];
+
+<MultiHighlight matchers={matchers}>{text}</MultiHighlight>
 ```
 
-## Contributing
+### Dynamic Highlighting
 
-Contributions are welcome! Please submit a pull request or create an issue for any features, bug fixes, or improvements.
+```jsx
+import React, { useState } from 'react';
+import MultiHighlight from 'react-multi-highlight';
+
+const DynamicHighlighting = () => {
+  const initialText = "In software development, highlighting important pieces of information can greatly improve readability and comprehension.";
+  const [text, setText] = useState(initialText);
+  const [highlight, setHighlight] = useState("");
+
+  const dynamicMatchers = [
+    { text: highlight, classname: "bg-yellow-300 text-black" },
+  ];
+
+  return (
+    <div>
+      <textarea
+        value={text}
+        onChange={e => setText(e.target.value)}
+        placeholder="Enter text"
+      />
+      <input
+        value={highlight}
+        onChange={e => setHighlight(e.target.value)}
+        placeholder="Enter text to highlight"
+      />
+      <MultiHighlight matchers={dynamicMatchers}>{text}</MultiHighlight>
+    </div>
+  );
+};
+
+export default DynamicHighlighting;
+```
+
+### Case-Sensitive Highlighting
+
+```jsx
+import React from 'react';
+import MultiHighlight from 'react-multi-highlight';
+
+const text = "In software development, highlighting Important pieces of information can greatly improve readability and comprehension.";
+const matchers = [
+  { text: "highlighting", classname: "bg-red-200 text-black" },
+  { text: "Important", classname: "bg-blue-200 text-black" },
+  { text: "information", classname: "bg-green-300 text-black" },
+];
+
+<MultiHighlight matchers={matchers} caseSensitive>{text}</MultiHighlight>
+```
+
+### Custom Wrapper Element
+
+```jsx
+import React from 'react';
+import MultiHighlight from 'react-multi-highlight';
+
+const text = "In software development, highlighting important pieces of information can greatly improve readability and comprehension.";
+const matchers = [
+  { text: "highlighting", classname: "bg-red-200 text-black" },
+  { text: "important", classname: "bg-green-300 text-black" },
+  { text: "information", classname: "bg-gray-600 text-white" },
+];
+
+const customWrapper = (className, text, key) => (
+  <strong key={key} className={className}>{text}</strong>
+);
+
+<MultiHighlight matchers={matchers} wrapperElement={customWrapper}>{text}</MultiHighlight>
+```
 
 ## License
 
-This project is open-sourced under the MIT License. See the [LICENSE](https://github.com/simonorzel26/ts-npm-package-boilerplate-2024/blob/main/LICENSE) file for more details.
-
-## Author
-
-Simon Orzel
+MIT
