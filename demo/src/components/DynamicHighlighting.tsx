@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react';
-import MultiHighLite from '../../../src/index';
+import MultiHighLite from 'react-multi-highlite';
 
 const DynamicHighLighting: React.FC = () => {
   const initialText = "In software development, highliteing important pieces of information can greatly improve readability and comprehension. For instance, highliteing code snippets, errors, or important notes in documentation can make a significant difference.";

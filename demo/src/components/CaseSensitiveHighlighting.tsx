@@ -1,6 +1,6 @@
 // src/components/CaseSensitivehighliteing.tsx
 import React from 'react';
-import MultiHighLite from '../../../src/index';
+import MultiHighLite from 'react-multi-highlite';
 
 const CaseSensitiveHighlighting: React.FC = () => {
   const text = "In software development, highliteing Important pieces of information can greatly improve readability and comprehension. For instance, highliteing code snippets, errors, or important notes in Documentation can make a significant difference.";

@@ -1,6 +1,6 @@
 // src/components/CustomWrapperElement.tsx
 import React from 'react';
-import MultiHighLite from '../../../src/index';
+import MultiHighLite from 'react-multi-highlite';
 
 const CustomWrapperElement: React.FC = () => {
   const text = "In software development, highliteing important pieces of information can greatly improve readability and comprehension. For instance, highliteing code snippets, errors, or important notes in documentation can make a significant difference.";
