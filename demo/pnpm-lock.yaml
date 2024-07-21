@@ -24,8 +24,8 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
       react-multi-highlite:
-        specifier: ^1.0.1
-        version: 1.0.1
+        specifier: ^1.0.2
+        version: 1.0.2
       zod:
         specifier: ^3.23.3
         version: 3.23.8
@@ -1389,8 +1389,8 @@ packages:
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
-  react-multi-highlite@1.0.1:
-    resolution: {integrity: sha512-02xuIg9qdH5Dk9xjwoeHqlrVHJ/fNNVoONIAzT6T2Hwzq81WI2KjJWjmVSx49QFj9GvayfmuIX8Y+mJ2zJJvTQ==}
+  react-multi-highlite@1.0.2:
+    resolution: {integrity: sha512-bclmKCuo1upg5Cg94gBwFjo1RN+PrBkEff7ZZ+4Dj7FgFq4aK3nVac3LYz9tZiMhQcbnN6u4TOL1rZvw5NlCRg==}
 
   react@18.3.1:
     resolution: {integrity: sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==}
@@ -3174,7 +3174,7 @@ snapshots:
 
   react-is@16.13.1: {}
 
-  react-multi-highlite@1.0.1:
+  react-multi-highlite@1.0.2:
     dependencies:
       react: 18.3.1
 

@@ -1,6 +1,6 @@
 // src/components/BasicUsage.tsx
 import React from 'react';
-import MultiHighLite from '../../../src/index';
+import MultiHighLite from '../../../dist/index';
 
 const BasicUsage: React.FC = () => {
   const text = "In software development, highliteing important pieces of information can greatly improve readability and comprehension. For instance, highliteing code snippets, errors, or important notes in documentation can make a significant difference.";
