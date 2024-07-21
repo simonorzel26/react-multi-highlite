@@ -1,40 +1,62 @@
 // src/MultiHighlight.tsx
-import { type FC } from 'react';
+import React, { type FC, type ReactElement } from "react";
 
 interface Matcher {
-  text: string;
-  classname: string;
+	text: string;
+	classname: string;
 }
 
 interface MultiHighlightProps {
-  children: string;
-  matchers: Matcher[];
+	children: string;
+	matchers: Matcher[];
+	caseSensitive?: boolean;
+	wrapperElement?: (
+		className: string,
+		text: string,
+		key: number,
+	) => ReactElement;
 }
 
-const MultiHighlight: FC<MultiHighlightProps> = ({ children, matchers }) => {
-  // Build a single regex pattern to match all keywords
-  const regexPattern: string = matchers.map((matcher: Matcher) => `(${matcher.text})`).join('|');
-  const regex: RegExp = new RegExp(regexPattern, 'gi');
+const MultiHighlight: FC<MultiHighlightProps> = ({
+	children,
+	matchers,
+	caseSensitive = false,
+	wrapperElement = (className, text, key) => (
+		<span key={key} className={className}>
+			{text}
+		</span>
+	),
+}) => {
+	if (!children) return <p />;
 
-  // Split text by regex matches
-  const parts: (string | JSX.Element)[] = children.split(regex);
+	// Filter out empty matcher texts
+	const filteredMatchers = matchers.filter((matcher) => matcher.text);
 
-  // Iterate through parts and wrap matches with spans
-  const highlightedText: (string | JSX.Element)[] = parts.map((part: string | JSX.Element, index: number) => {
-    if (regex.test(String(part))) {
-      const matcher: Matcher | undefined = matchers.find((m: Matcher) => m.text.toLowerCase() === part.toString().toLowerCase());
-      if (matcher) {
-        return (
-          <span key={index} className={matcher.classname}>
-            {part}
-          </span>
-        );
-      }
-    }
-    return part;
-  });
+	const regexFlags = caseSensitive ? "g" : "gi";
+	const regexPattern = filteredMatchers
+		.map(
+			(matcher) => `(${matcher.text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`,
+		)
+		.join("|");
+	const regex = new RegExp(regexPattern, regexFlags);
 
-  return <p>{highlightedText}</p>;
+	const parts = children.split(regex);
+
+	const highlightedText = parts.map((part, index) => {
+		if (typeof part === "string" && regex.test(part)) {
+			const matcher = filteredMatchers.find((m) =>
+				caseSensitive
+					? m.text === part
+					: m.text.toLowerCase() === part.toLowerCase(),
+			);
+			if (matcher) {
+				return wrapperElement(matcher.classname, part, index);
+			}
+		}
+		return part;
+	});
+
+	return <p>{highlightedText}</p>;
 };
 
 export default MultiHighlight;
