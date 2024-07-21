@@ -1,3 +1,3 @@
-export const foo = (bar: string): string => {
-	return bar;
-};
+import MultiHighLite from "./MultiHighLite.js";
+
+export default MultiHighLite;

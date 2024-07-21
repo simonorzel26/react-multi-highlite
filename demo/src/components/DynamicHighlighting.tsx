@@ -1,9 +1,8 @@
 'use client'
-// src/components/Dynamichighliteing.tsx
 import React, { useState } from 'react';
-import Multihighlite from '../../../src/Multihighlite';
+import MultiHighLite from '../../../src/index';
 
-const Dynamichighliteing: React.FC = () => {
+const DynamicHighLighting: React.FC = () => {
   const initialText = "In software development, highliteing important pieces of information can greatly improve readability and comprehension. For instance, highliteing code snippets, errors, or important notes in documentation can make a significant difference.";
   const [text, setText] = useState(initialText);
   const [highlite, sethighlite] = useState("");
@@ -21,7 +20,7 @@ const Dynamichighliteing: React.FC = () => {
         placeholder="Enter text to highlite"
         className="p-2 mb-2 w-full text-black border rounded"
       />
-      <Multihighlite matchers={dynamicMatchers}>{text}</Multihighlite>
+      <MultiHighLite matchers={dynamicMatchers}>{text}</MultiHighLite>
       <pre className="mt-4 p-4 bg-gray-800 text-white rounded overflow-auto">
         {`const initialText = "In software development, highliteing important pieces of information can greatly improve readability and comprehension. For instance, highliteing code snippets, errors, or important notes in documentation can make a significant difference.";
 const [text, setText] = useState(initialText);
@@ -33,10 +32,10 @@ const dynamicMatchers = [
 
 <textarea value={text} onChange={e => setText(e.target.value)} />
 <input value={highlite} onChange={e => sethighlite(e.target.value)} placeholder="Enter text to highlite" />
-<Multihighlite matchers={dynamicMatchers}>{text}</Multihighlite>`}
+<MultiHighLite matchers={dynamicMatchers}>{text}</MultiHighLite>`}
       </pre>
     </div>
   );
 };
 
-export default Dynamichighliteing;
+export default DynamicHighLighting;

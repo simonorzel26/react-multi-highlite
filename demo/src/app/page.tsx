@@ -1,9 +1,9 @@
 'use client';
 import React from 'react';
 import BasicUsage from '~/components/BasicUsage';
-import CaseSensitivehighliteing from '~/components/CaseSensitivehighliteing';
+import CaseSensitiveHighlighting from '~/components/CaseSensitiveHighlighting';
 import CustomWrapperElement from '~/components/CustomWrapperElement';
-import Dynamichighliteing from '~/components/Dynamichighliteing';
+import DynamicHighlighting from '~/components/DynamicHighlighting';
 
 export default function HomePage() {
   return (
@@ -19,10 +19,10 @@ export default function HomePage() {
         </pre>
         <h2 className="text-2xl font-bold mb-4">Usage</h2>
         <p className="mb-4">
-          To use the <code>Multihighlite</code> component, import it and pass the text you want to highlite along with an array of matcher objects. Each matcher object should contain the text to highlite and the class name to apply to the highliteed text.
+          To use the <code>MultiHighLite</code> component, import it and pass the text you want to highlite along with an array of matcher objects. Each matcher object should contain the text to highlite and the class name to apply to the highliteed text.
         </p>
         <pre className="p-4 bg-gray-800 text-white rounded mb-4">
-          {`import Multihighlite from 'react-multi-highlite';
+          {`import MultiHighLite from 'react-multi-highlite';
 
 const text = "In software development, highliteing important pieces of information can greatly improve readability and comprehension.";
 const matchers = [
@@ -31,7 +31,7 @@ const matchers = [
   { text: "information", classname: "bg-gray-600 text-white" },
 ];
 
-<Multihighlite matchers={matchers}>{text}</Multihighlite>`}
+<MultiHighLite matchers={matchers}>{text}</MultiHighLite>`}
         </pre>
         <h2 className="text-2xl font-bold mb-4">Props</h2>
         <ul className="list-disc pl-6">
@@ -47,11 +47,11 @@ const matchers = [
       </section>
 
       <section className="w-full">
-        <Dynamichighliteing />
+        <DynamicHighlighting />
       </section>
 
       <section className="w-full">
-        <CaseSensitivehighliteing />
+        <CaseSensitiveHighlighting />
       </section>
 
       <section className="w-full">

@@ -1,4 +1,4 @@
-// src/Multihighlite.tsx
+// src/MultiHighLite.tsx
 import React, { type FC, type ReactElement } from "react";
 
 /**
@@ -12,13 +12,13 @@ interface Matcher {
 }
 
 /**
- * Props for the Multihighlite component.
+ * Props for the MultiHighLite component.
  * @property {string} children - The text to search for matches.
  * @property {Matcher[]} matchers - Array of matcher objects containing text and classname.
  * @property {boolean} [caseSensitive] - Whether the matching should be case-sensitive. Defaults to false.
  * @property {(className: string, text: string, key: number) => ReactElement} [wrapperElement] - Custom wrapper element for the highliteed text.
  */
-interface MultihighliteProps {
+interface MultiHighLiteProps {
 	children: string;
 	matchers: Matcher[];
 	caseSensitive?: boolean;
@@ -30,11 +30,11 @@ interface MultihighliteProps {
 }
 
 /**
- * Multihighlite component to highlite specific words in a text based on matchers.
- * @param {MultihighliteProps} props - The props for the component.
+ * MultiHighLite component to highlite specific words in a text based on matchers.
+ * @param {MultiHighLiteProps} props - The props for the component.
  * @returns {ReactElement} The rendered component.
  */
-const Multihighlite: FC<MultihighliteProps> = ({
+const MultiHighLite: FC<MultiHighLiteProps> = ({
 	children,
 	matchers,
 	caseSensitive = false,
@@ -76,4 +76,4 @@ const Multihighlite: FC<MultihighliteProps> = ({
 	return <p>{highliteedText}</p>;
 };
 
-export default Multihighlite;
+export default MultiHighLite;
