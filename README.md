@@ -1,35 +1,55 @@
 
 # react-multi-highlite
 
-`react-multi-highlite` is a React component that allows you to highlite specific words or phrases within a block of text. This can be particularly useful for emphasizing important information, highliteing search terms, or making certain parts of the text stand out.
+`react-multi-highlite` is a lightweight React component that allows you to highlight specific words or phrases within a block of text. This component is very lightweight as it doesn't use highlight.js or lowlight and doesn't include bulky coding languages. It's a basic text highlighter designed to be simple and efficient.
 
 ## Installation
 
-You can install the library using npm:
+You can install the library using npm, Yarn, pnpm, or Bun:
+
+### npm
 
 ```bash
 npm install react-multi-highlite
 ```
 
+### Yarn
+
+```bash
+yarn add react-multi-highlite
+```
+
+### pnpm
+
+```bash
+pnpm add react-multi-highlite
+```
+
+### Bun
+
+```bash
+bun add react-multi-highlite
+```
+
 ## Usage
 
-To use the `Multihighlite` component, import it and pass the text you want to highlite along with an array of matcher objects. Each matcher object should contain the text to highlite and the class name to apply to the highliteed text.
+To use the `MultiHighlight` component, import it and pass the text you want to highlight along with an array of matcher objects. Each matcher object should contain the text to highlight and the class name to apply to the highlighted text.
 
 ```jsx
 import React from 'react';
-import Multihighlite from 'react-multi-highlite';
+import MultiHighlight from 'react-multi-highlite';
 
 const App = () => {
-  const text = "In software development, highliteing important pieces of information can greatly improve readability and comprehension. For instance, highliteing code snippets, errors, or important notes in documentation can make a significant difference.";
+  const text = "In software development, highlighting important pieces of information can greatly improve readability and comprehension. For instance, highlighting code snippets, errors, or important notes in documentation can make a significant difference.";
   const matchers = [
-    { text: "highliteing", classname: "bg-red-200 text-black" },
+    { text: "highlighting", classname: "bg-red-200 text-black" },
     { text: "important", classname: "bg-green-300 text-black" },
     { text: "information", classname: "bg-gray-600 text-white" },
   ];
 
   return (
     <div>
-      <Multihighlite matchers={matchers}>{text}</Multihighlite>
+      <MultiHighlight matchers={matchers}>{text}</MultiHighlight>
     </div>
   );
 };
@@ -39,16 +59,16 @@ export default App;
 
 ## Props
 
-### Multihighlite
+### MultiHighlight
 
-The `Multihighlite` component accepts the following props:
+The `MultiHighlight` component accepts the following props:
 
 - **children**: The text to search for matches (required).
 - **matchers**: Array of matcher objects containing `text` and `classname` (required).
-  - `text`: The text to match and highlite.
-  - `classname`: The class name to apply to the highliteed text.
+  - `text`: The text to match and highlight.
+  - `classname`: The class name to apply to the highlighted text.
 - **caseSensitive**: (optional) Whether the matching should be case-sensitive. Defaults to `false`.
-- **wrapperElement**: (optional) Custom wrapper element for the highliteed text. This should be a function that returns a React element.
+- **wrapperElement**: (optional) Custom wrapper element for the highlighted text. This should be a function that returns a React element.
 
 ## Examples
 
@@ -56,31 +76,31 @@ The `Multihighlite` component accepts the following props:
 
 ```jsx
 import React from 'react';
-import Multihighlite from 'react-multi-highlite';
+import MultiHighlight from 'react-multi-highlite';
 
-const text = "In software development, highliteing important pieces of information can greatly improve readability and comprehension.";
+const text = "In software development, highlighting important pieces of information can greatly improve readability and comprehension.";
 const matchers = [
-  { text: "highliteing", classname: "bg-red-200 text-black" },
+  { text: "highlighting", classname: "bg-red-200 text-black" },
   { text: "important", classname: "bg-green-300 text-black" },
   { text: "information", classname: "bg-gray-600 text-white" },
 ];
 
-<Multihighlite matchers={matchers}>{text}</Multihighlite>
+<MultiHighlight matchers={matchers}>{text}</MultiHighlight>
 ```
 
-### Dynamic highliteing
+### Dynamic Highlighting
 
 ```jsx
 import React, { useState } from 'react';
-import Multihighlite from 'react-multi-highlite';
+import MultiHighlight from 'react-multi-highlite';
 
-const Dynamichighliteing = () => {
-  const initialText = "In software development, highliteing important pieces of information can greatly improve readability and comprehension.";
+const DynamicHighlighting = () => {
+  const initialText = "In software development, highlighting important pieces of information can greatly improve readability and comprehension.";
   const [text, setText] = useState(initialText);
-  const [highlite, sethighlite] = useState("");
+  const [highlight, setHighlight] = useState("");
 
   const dynamicMatchers = [
-    { text: highlite, classname: "bg-yellow-300 text-black" },
+    { text: highlight, classname: "bg-yellow-300 text-black" },
   ];
 
   return (
@@ -91,43 +111,43 @@ const Dynamichighliteing = () => {
         placeholder="Enter text"
       />
       <input
-        value={highlite}
-        onChange={e => sethighlite(e.target.value)}
-        placeholder="Enter text to highlite"
+        value={highlight}
+        onChange={e => setHighlight(e.target.value)}
+        placeholder="Enter text to highlight"
       />
-      <Multihighlite matchers={dynamicMatchers}>{text}</Multihighlite>
+      <MultiHighlight matchers={dynamicMatchers}>{text}</MultiHighlight>
     </div>
   );
 };
 
-export default Dynamichighliteing;
+export default DynamicHighlighting;
 ```
 
-### Case-Sensitive highliteing
+### Case-Sensitive Highlighting
 
 ```jsx
 import React from 'react';
-import Multihighlite from 'react-multi-highlite';
+import MultiHighlight from 'react-multi-highlite';
 
-const text = "In software development, highliteing Important pieces of information can greatly improve readability and comprehension.";
+const text = "In software development, highlighting Important pieces of information can greatly improve readability and comprehension.";
 const matchers = [
-  { text: "highliteing", classname: "bg-red-200 text-black" },
+  { text: "highlighting", classname: "bg-red-200 text-black" },
   { text: "Important", classname: "bg-blue-200 text-black" },
   { text: "information", classname: "bg-green-300 text-black" },
 ];
 
-<Multihighlite matchers={matchers} caseSensitive>{text}</Multihighlite>
+<MultiHighlight matchers={matchers} caseSensitive>{text}</MultiHighlight>
 ```
 
 ### Custom Wrapper Element
 
 ```jsx
 import React from 'react';
-import Multihighlite from 'react-multi-highlite';
+import MultiHighlight from 'react-multi-highlite';
 
-const text = "In software development, highliteing important pieces of information can greatly improve readability and comprehension.";
+const text = "In software development, highlighting important pieces of information can greatly improve readability and comprehension.";
 const matchers = [
-  { text: "highliteing", classname: "bg-red-200 text-black" },
+  { text: "highlighting", classname: "bg-red-200 text-black" },
   { text: "important", classname: "bg-green-300 text-black" },
   { text: "information", classname: "bg-gray-600 text-white" },
 ];
@@ -136,7 +156,7 @@ const customWrapper = (className, text, key) => (
   <strong key={key} className={className}>{text}</strong>
 );
 
-<Multihighlite matchers={matchers} wrapperElement={customWrapper}>{text}</Multihighlite>
+<MultiHighlight matchers={matchers} wrapperElement={customWrapper}>{text}</MultiHighlight>
 ```
 
 ## License
