@@ -2,7 +2,7 @@
   "name": "react-multi-highlite",
   "type": "module",
   "description": "React multi highlite component for text",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": {
