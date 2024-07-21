@@ -19,6 +19,7 @@ interface Matcher {
  * @property {(className: string, text: string, key: number) => ReactElement} [wrapperElement] - Custom wrapper element for the highliteed text.
  */
 interface MultiHighLiteProps {
+	className?: string;
 	children: string;
 	matchers: Matcher[];
 	caseSensitive?: boolean;
@@ -35,6 +36,7 @@ interface MultiHighLiteProps {
  * @returns {ReactElement} The rendered component.
  */
 const MultiHighLite: FC<MultiHighLiteProps> = ({
+	className = "",
 	children,
 	matchers,
 	caseSensitive = false,
@@ -73,7 +75,7 @@ const MultiHighLite: FC<MultiHighLiteProps> = ({
 		return part;
 	});
 
-	return <p>{highliteedText}</p>;
+	return <div className={className}>{highliteedText}</div>;
 };
 
 export default MultiHighLite;
