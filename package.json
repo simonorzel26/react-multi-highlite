@@ -2,14 +2,14 @@
   "name": "react-multi-highlite",
   "type": "module",
   "description": "React multi highlite component for text",
-  "version": "1.0.4",
+  "version": "2.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/simonorzel26/react-multi-highlite"
   },
-  "homepage": "https://github.com/simonorzel26/react-multi-highlite",
+  "homepage": "https://react-multi-highlite.vercel.app/",
   "files": [
     "dist/**/*"
   ],
