@@ -1,13 +1,13 @@
 {
-  "name": "ts-npm-package-boilerplate-2024",
+  "name": "react-multi-highlight",
   "type": "module",
-  "description": "TS NPM Package Boilerplate for 2024 ",
-  "version": "0.0.1",
+  "description": "React multi highlight component for text",
+  "version": "1.0.1",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/simonorzel26/ts-npm-package-boilerplate-2024.git"
+    "url": "git+https://github.com/simonorzel26/react-multi-highlight"
   },
-  "homepage": "https://github.com/simonorzel26/ts-npm-package-boilerplate-2024",
+  "homepage": "https://github.com/simonorzel26/react-multi-highlight",
   "files": [
     "dist/**/*"
   ],
@@ -27,7 +27,7 @@
     "typescript": "^5.5.3"
   },
   "bugs": {
-    "url": "https://github.com/simonorzel26/ts-npm-package-boilerplate-2024/issues"
+    "url": "https://github.com/simonorzel26/react-multi-highlight/issues"
   },
   "dependencies": {
     "react": "^18.3.1"
