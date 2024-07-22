@@ -1,4 +1,5 @@
 
+---
 
 ## Demo
 
@@ -72,6 +73,7 @@ The `MultiHighLite` component accepts the following props:
 - **matchers**: Array of matcher objects containing `text` and `classname` (required).
   - `text`: The text to match and highlight.
   - `classname`: The class name to apply to the highlighted text.
+- **className**: The class name of the entire line div (optional).
 - **caseSensitive**: (optional) Whether the matching should be case-sensitive. Defaults to `false`.
 - **wrapperElement**: (optional) Custom wrapper element for the highlighted text. This should be a function that returns a React element.
 
@@ -81,87 +83,68 @@ The `MultiHighLite` component accepts the following props:
 
 ```jsx
 import React from 'react';
-import MultiHighLite from 'react-multi-highlite';
+import BasicUsage from '~/components/BasicUsage';
 
-const text = "In software development, highlighting important pieces of information can greatly improve readability and comprehension.";
-const matchers = [
-  { text: "highlighting", classname: "bg-red-200 text-black" },
-  { text: "important", classname: "bg-green-300 text-black" },
-  { text: "information", classname: "bg-gray-600 text-white" },
-];
-
-<MultiHighLite matchers={matchers}>{text}</MultiHighLite>
+export default function HomePage() {
+  return (
+    <main className="flex flex-col items-center justify-center bg-[#f0f4f8] text-gray-800 space-y-8 p-6 min-h-screen">
+      <section className="w-full max-w-3xl">
+        <BasicUsage />
+      </section>
+    </main>
+  );
+}
 ```
 
 ### Dynamic Highlighting
 
 ```jsx
 import React, { useState } from 'react';
-import MultiHighLite from 'react-multi-highlite';
+import DynamicHighlighting from '~/components/DynamicHighlighting';
 
-const DynamicHighlighting = () => {
-  const initialText = "In software development, highlighting important pieces of information can greatly improve readability and comprehension.";
-  const [text, setText] = useState(initialText);
-  const [highlight, setHighlight] = useState("");
-
-  const dynamicMatchers = [
-    { text: highlight, classname: "bg-yellow-300 text-black" },
-  ];
-
+export default function HomePage() {
   return (
-    <div>
-      <textarea
-        value={text}
-        onChange={e => setText(e.target.value)}
-        placeholder="Enter text"
-      />
-      <input
-        value={highlight}
-        onChange={e => setHighlight(e.target.value)}
-        placeholder="Enter text to highlight"
-      />
-      <MultiHighLite matchers={dynamicMatchers}>{text}</MultiHighLite>
-    </div>
+    <main className="flex flex-col items-center justify-center bg-[#f0f4f8] text-gray-800 space-y-8 p-6 min-h-screen">
+      <section className="w-full max-w-3xl">
+        <DynamicHighlighting />
+      </section>
+    </main>
   );
-};
-
-export default DynamicHighlighting;
+}
 ```
 
 ### Case-Sensitive Highlighting
 
 ```jsx
 import React from 'react';
-import MultiHighLite from 'react-multi-highlite';
+import CaseSensitiveHighlighting from '~/components/CaseSensitiveHighlighting';
 
-const text = "In software development, highlighting Important pieces of information can greatly improve readability and comprehension.";
-const matchers = [
-  { text: "highlighting", classname: "bg-red-200 text-black" },
-  { text: "Important", classname: "bg-blue-200 text-black" },
-  { text: "information", classname: "bg-green-300 text-black" },
-];
-
-<MultiHighLite matchers={matchers} caseSensitive>{text}</MultiHighLite>
+export default function HomePage() {
+  return (
+    <main className="flex flex-col items-center justify-center bg-[#f0f4f8] text-gray-800 space-y-8 p-6 min-h-screen">
+      <section className="w-full max-w-3xl">
+        <CaseSensitiveHighlighting />
+      </section>
+    </main>
+  );
+}
 ```
 
 ### Custom Wrapper Element
 
 ```jsx
 import React from 'react';
-import MultiHighLite from 'react-multi-highlite';
+import CustomWrapperElement from '~/components/CustomWrapperElement';
 
-const text = "In software development, highlighting important pieces of information can greatly improve readability and comprehension.";
-const matchers = [
-  { text: "highlighting", classname: "bg-red-200 text-black" },
-  { text: "important", classname: "bg-green-300 text-black" },
-  { text: "information", classname: "bg-gray-600 text-white" },
-];
-
-const customWrapper = (className, text, key) => (
-  <strong key={key} className={className}>{text}</strong>
-);
-
-<MultiHighLite matchers={matchers} wrapperElement={customWrapper}>{text}</MultiHighLite>
+export default function HomePage() {
+  return (
+    <main className="flex flex-col items-center justify-center bg-[#f0f4f8] text-gray-800 space-y-8 p-6 min-h-screen">
+      <section className="w-full max-w-3xl">
+        <CustomWrapperElement />
+      </section>
+    </main>
+  );
+}
 ```
 
 ## License
@@ -171,92 +154,5 @@ MIT
 ## Why 'Lite'?
 
 `react-multi-highlite` is designed to be lightweight and efficient. It doesn't bring in large dependencies, making it ideal for projects where performance and bundle size are critical considerations.
-```
 
-### MultiHighLite Component
-
-Here is the updated `MultiHighLite` component:
-
-```tsx
-// src/MultiHighLite.tsx
-import React, { type FC, type ReactElement } from "react";
-
-/**
- * Interface for matcher objects.
- * @property {string} text - The text to match and highlight.
- * @property {string} classname - The class name to apply to the highlighted text.
- */
-interface Matcher {
-	text: string;
-	classname: string;
-}
-
-/**
- * Props for the MultiHighLite component.
- * @property {string} children - The text to search for matches.
- * @property {Matcher[]} matchers - Array of matcher objects containing text and classname.
- * @property {boolean} [caseSensitive] - Whether the matching should be case-sensitive. Defaults to false.
- * @property {(className: string, text: string, key: number) => ReactElement} [wrapperElement] - Custom wrapper element for the highlighted text.
- */
-interface MultiHighLiteProps {
-	className?: string;
-	children: string;
-	matchers: Matcher[];
-	caseSensitive?: boolean;
-	wrapperElement?: (
-		className: string,
-		text: string,
-		key: number,
-	) => ReactElement;
-}
-
-/**
- * MultiHighLite component to highlight specific words in a text based on matchers.
- * @param {MultiHighLiteProps} props - The props for the component.
- * @returns {ReactElement} The rendered component.
- */
-const MultiHighLite: FC<MultiHighLiteProps> = ({
-	className = "",
-	children,
-	matchers,
-	caseSensitive = false,
-	wrapperElement = (className, text, key) => (
-		<span key={key} className={className}>
-			{text}
-		</span>
-	),
-}) => {
-	if (!children) return <p />;
-
-	// Filter out empty matcher texts
-	const filteredMatchers = matchers.filter((matcher) => matcher.text);
-
-	const regexFlags = caseSensitive ? "g" : "gi";
-	const regexPattern = filteredMatchers
-		.map(
-			(matcher) => `(${matcher.text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`,
-		)
-		.join("|");
-	const regex = new RegExp(regexPattern, regexFlags);
-
-	const parts = children.split(regex);
-
-	const highlightedText = parts.map((part, index) => {
-		if (typeof part === "string" && regex.test(part)) {
-			const matcher = filteredMatchers.find((m) =>
-				caseSensitive
-					? m.text === part
-					: m.text.toLowerCase() === part.toLowerCase(),
-			);
-			if (matcher) {
-				return wrapperElement(matcher.classname, part, index);
-			}
-		}
-		return part;
-	});
-
-	return <div className={className}>{highlightedText}</div>;
-};
-
-export default MultiHighLite;
-```
+---
