@@ -5,6 +5,8 @@
 
 Check out the live demo [here](https://react-multi-highlite.vercel.app/).
 
+![Demo](example.png)
+
 # react-multi-highlite
 
 `react-multi-highlite` is a lightweight React component that allows you to highlight specific words or phrases within a block of text. This component is very lightweight as it doesn't use highlight.js or lowlight and doesn't include bulky coding languages. It's a basic text highlighter designed to be simple and efficient.
